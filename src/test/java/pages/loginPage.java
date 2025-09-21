@@ -1,34 +1,35 @@
 package pages;
 
+import constants.locatorConstants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class loginPage {
     WebDriver driver;
 
-    By txt_username = By.xpath("//input[@id='user-name']");
-    By txt_password = By.xpath("//input[@id='password']");
-    By btn_login = By.xpath("//input[@id='login-button']");
-    By btn_logout = By.xpath("//div[@id='shopping_cart_container']");
+    //By txt_username = By.xpath("//input[@id='user-name']");
+    //By txt_password = By.xpath("//input[@id='password']");
+    //By btn_login = By.xpath("//input[@id='login-button']");
+    //By btn_logout = By.xpath("//div[@id='shopping_cart_container']");
 
     public loginPage(WebDriver driver){
     this.driver = driver;
     }
 
     public void enterUsername(String username){
-        driver.findElement(txt_username).sendKeys(username);
+        driver.findElement(locatorConstants.TXT_USERNAME).sendKeys(username);
     }
 
     public void enterPassword(String password){
-        driver.findElement(txt_password).sendKeys(password);
+        driver.findElement(locatorConstants.TXT_PASSWORD).sendKeys(password);
     }
 
     public void clickLogin(){
-        driver.findElement(btn_login).click();
+        driver.findElement(locatorConstants.BTN_LOGIN).click();
     }
 
     public void checkLogOutIsDisplayed(){
-        driver.findElement(btn_logout).isDisplayed();
+        driver.findElement(locatorConstants.BTN_LOGOUT).isDisplayed();
     }
 /*
     public void loginValidUser(String username, String password){
