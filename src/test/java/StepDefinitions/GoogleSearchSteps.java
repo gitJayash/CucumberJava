@@ -19,7 +19,7 @@ public class GoogleSearchSteps {
     @Given("browser is open")
     public void browser_is_open() {
         System.out.println("Inside Step - Browser is open");
-        System.setProperty("webdriver.chrome.driver","C:/Automation_Projects/CucumberJava/src/test/resources/drivers/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","C:/Automation Projects/CucumberJava/src/test/resources/drivers/chromedriver.exe");
     driver = new ChromeDriver();
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
     driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
