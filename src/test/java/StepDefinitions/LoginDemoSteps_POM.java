@@ -28,7 +28,8 @@ public class LoginDemoSteps_POM {
     public void user_is_on_login() {
         driver.navigate().to("https://www.saucedemo.com/");
     }
-
+    //Below is the previous nonparameterized step for LoginDemo. Commenting this until line 49
+    /*
     @When("User enters username and password")
     public void user_enters_username_and_password() {
 
@@ -45,12 +46,25 @@ public class LoginDemoSteps_POM {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }*/
+//New Parameterized Step for matching both
+    @When("User enters username {string} and password {string}")
+    public void user_enters_username_and_password(String username, String password) {
+        login = new loginPage(driver);
+        login.enterUsername(username);
+        login.enterPassword(password);
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @When("User clicks on login")
     public void User_clicks_on_login() {
 
-       login.clickLogin();
+        login.clickLogin();
         //driver.findElement(By.xpath("//input[@id='login-button']")).click();
 
     }
@@ -59,7 +73,7 @@ public class LoginDemoSteps_POM {
     public void user_is_navigated_to_the_home() {
 
         login.checkLogOutIsDisplayed();
-       //driver.findElement(By.id("page_wrapper")).isDisplayed();
+        //driver.findElement(By.id("page_wrapper")).isDisplayed();
 
 
         driver.close();
