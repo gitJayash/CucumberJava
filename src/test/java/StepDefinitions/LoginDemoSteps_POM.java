@@ -1,5 +1,7 @@
 package StepDefinitions;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.loginPage;
+import util.BrowserFactory;
 
 import java.time.Duration;
 
@@ -15,13 +18,28 @@ public class LoginDemoSteps_POM {
     WebDriver driver = null;
     loginPage login;
 
+    // ------------------- Hooks -------------------
+    @Before
+    public void setup() {
+        String browserName = "chrome";
+        driver = BrowserFactory.getDriver(browserName);
+    }
+    @After
+    public void tearDown() {
+        BrowserFactory.quitDriver();
+    }
+
+
     @Given("Browser is open")
     public void browser_is_open() {
         System.out.println("Inside Step - Browser is open");
-        System.setProperty("webdriver.chrome.driver","C:/Automation Projects/CucumberJava/src/test/resources/drivers/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+
+        //String browserName = "firefox";
+        //driver = BrowserFactory.getDriver(browserName);
+        //System.setProperty("webdriver.chrome.driver","C:/Automation Projects/CucumberJava/src/test/resources/drivers/chromedriver.exe");
+        //driver = new ChromeDriver();
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+        //driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
     }
 
     @And("user is on login")
@@ -76,8 +94,8 @@ public class LoginDemoSteps_POM {
         //driver.findElement(By.id("page_wrapper")).isDisplayed();
 
 
-        driver.close();
-        driver.quit();
+        //driver.close();
+        //driver.quit();
 
     }
 }
